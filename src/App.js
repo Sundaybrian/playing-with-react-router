@@ -12,16 +12,6 @@ import {
     Redirect,
 } from "react-router-dom";
 
-function Content(props) {
-    return (
-        <>
-            {" "}
-            <div>{props.linkTo.name} page</div>
-            <div>{props.linkTo.component}</div>
-        </>
-    );
-}
-
 function VerticalMenu(props) {
     return (
         <div
