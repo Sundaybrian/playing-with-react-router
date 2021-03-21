@@ -63,7 +63,6 @@ class DashBoardContainer extends React.Component {
                         path={`${matchPath}/:id`}
                         render={(props) => {
                             const linkTo = this.routes.find((l) => {
-                                console.log(l);
                                 return l.name === props.match.params.id;
                             });
 

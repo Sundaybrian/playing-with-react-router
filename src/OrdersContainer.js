@@ -1,15 +1,32 @@
 import React, { useEffect } from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import {
+    Route,
+    Link,
+    Switch,
+    useRouteMatch,
+    useLocation,
+} from "react-router-dom";
 
 function OrderDetail(props) {
+    const { url, match } = useRouteMatch();
+
     useEffect(() => {
-        console.log("use effect");
+        console.log(url, "use effect");
     }, []);
-    return <p>orders detail table</p>;
+    return <p>orders detail page</p>;
 }
 
 function Orders(props) {
-    return <p>orders table</p>;
+    const { url, match } = useRouteMatch();
+
+    console.log(url);
+    return (
+        <>
+            {" "}
+            <p>orders page</p>
+            <Link to={`${url}/1`}>Product 1</Link>
+        </>
+    );
 }
 
 function OrdersContainer(props) {
@@ -19,12 +36,11 @@ function OrdersContainer(props) {
     ];
 
     const { url } = props.match;
-    console.log(props.match, url);
+    // console.log(props.match, url);
 
     return (
-        <Link>
+        <>
             <ul>
-                <Link to={`${url}/1`}>Product 1</Link>
                 <Link to={`${url}`}>Back</Link>
                 <li></li>
             </ul>
@@ -39,7 +55,7 @@ function OrdersContainer(props) {
                     />
                 ))}
             </div>
-        </Link>
+        </>
     );
 }
 
