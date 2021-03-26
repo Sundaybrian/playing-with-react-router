@@ -3,7 +3,10 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import OrdersContainer from "./OrdersContainer";
+import MenusContainer from "./Menu/MenusContainer";
+import Menus from "./Menu/Menus";
 import Analytics from "./Analytics";
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,6 +14,9 @@ import {
     Link,
     Redirect,
 } from "react-router-dom";
+import Cat1 from "./Menu/Cat1";
+import Cat2 from "./Menu/CatItem";
+import Cat3 from "./Menu/Cat3";
 
 function VerticalMenu(props) {
     return (
@@ -33,6 +39,18 @@ class DashBoardContainer extends React.Component {
     routes = [
         { path: "analytics", name: "analytics", component: Analytics },
         { path: "orders", name: "orders", component: OrdersContainer },
+        {
+            path: "menus",
+            name: "menus",
+            component: MenusContainer,
+            routes: [
+                {
+                    path: "",
+                    name: "Menus",
+                    component: Menus,
+                },
+            ],
+        },
     ];
 
     render() {
@@ -67,7 +85,16 @@ class DashBoardContainer extends React.Component {
                             });
 
                             return (
-                                <linkTo.component linkTo={linkTo} {...props} />
+                                <linkTo.component
+                                    linkTo={linkTo}
+                                    routes={
+                                        // sending routes thru, will be useful for containers
+                                        linkTo.routes !== null
+                                            ? linkTo.routes
+                                            : []
+                                    }
+                                    {...props}
+                                />
                             );
                         }}
                     />
